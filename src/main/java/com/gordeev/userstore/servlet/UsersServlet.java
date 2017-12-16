@@ -4,6 +4,7 @@ import com.gordeev.userstore.entity.User;
 import com.gordeev.userstore.service.UserService;
 import com.gordeev.userstore.templater.PageGenerator;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,5 +34,10 @@ public class UsersServlet extends HttpServlet {
 
         response.getWriter().println(PageGenerator.instance().getPage("users.html", pageVariables));
 
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req,resp);
     }
 }
