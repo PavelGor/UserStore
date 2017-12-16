@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Update user info</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle navbar-brand" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="users.html">Users Info</a>
+            <a class="dropdown-item" href="#">Reports</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Leave this site at all</a>
+        </div>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="users.html">Users </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="addUser.html">Add new user</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Update info about user  <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container mt-3">
+    <form method="post">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="firstName">First Name: </label>
+            <div class="col-md-4">
+                <input id="firstName" name="firstName" type="text" value=${user.firstName} class="form-control input-md" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="lastName">Last Name: </label>
+            <div class="col-md-4">
+                <input id="lastName" name="lastName" type="text" value="${user.lastName}" class="form-control input-md" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="dateOfBirth">Date of Birth: </label>
+            <div class="col-md-4">
+                <input id="dateOfBirth" name="dateOfBirth" type="date" value=${user.dateOfBirth} class="form-control input-md">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="salary">Salary: </label>
+            <div class="col-md-4">
+                <input id="salary" name="salary" type="text" value=${user.salary} class="form-control input-md" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label"> Here must be some additional info about user </label>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row col-md-4">
+            <div>
+                <button id="updateUserButton" name="button" class="btn btn-primary">Update User</button>
+            </div>
+                <!--
+            <div>
+                <button id="deleteUserButton" name="button" class="btn btn-primary">Delete User</button>
+            </div>
+            -->
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+</body>
+</html>
