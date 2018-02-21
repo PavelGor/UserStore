@@ -7,9 +7,10 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ServiceForServlet {
+public class ServletUtils {
 
     public static User createUserFromRequest(HttpServletRequest request){
+        //request.setCharacterEncoding("utf-8");
         String idString = request.getParameter("id");
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");

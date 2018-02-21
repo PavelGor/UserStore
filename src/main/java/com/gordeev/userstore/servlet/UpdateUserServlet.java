@@ -16,7 +16,7 @@ public class UpdateUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Map<String, Object> pageVariables = ServiceForServlet.createPageVariablesMap(request);
+        Map<String, Object> pageVariables = ServletUtils.createPageVariablesMap(request);
 
         int id = Integer.parseInt(request.getParameter("id"));
         User user = userService.getUserById(id);
@@ -31,7 +31,7 @@ public class UpdateUserServlet extends HttpServlet {
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response) throws IOException {
 
-        User user = ServiceForServlet.createUserFromRequest(request);
+        User user = ServletUtils.createUserFromRequest(request);
 
         userService.updateUser(user);
 

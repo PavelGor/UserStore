@@ -6,14 +6,13 @@ import org.junit.Test;
 
 import javax.servlet.http.HttpServletRequest;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class ServiceForServletTest {
+public class ServletUtilsTest {
 
     User expectedUser;
     HttpServletRequest request;
@@ -37,7 +36,7 @@ public class ServiceForServletTest {
 
     @Test
     public void createUserFromRequestTest() {
-        User actualUser = ServiceForServlet.createUserFromRequest(request);
+        User actualUser = ServletUtils.createUserFromRequest(request);
 
         assertNotNull(actualUser);
         assertEquals(expectedUser.getId(),actualUser.getId());

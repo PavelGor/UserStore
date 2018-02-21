@@ -1,4 +1,6 @@
-CREATE DATABASE `developer` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE `userstore`;
+
+use `userstore`;
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

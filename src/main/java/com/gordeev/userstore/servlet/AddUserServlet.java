@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
-public class AddNewUserServlet extends HttpServlet {
+public class AddUserServlet extends HttpServlet {
 
     private UserService userService = new UserService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Map<String, Object> pageVariables = ServiceForServlet.createPageVariablesMap(request);
+        Map<String, Object> pageVariables = ServletUtils.createPageVariablesMap(request);
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
         response.getWriter().println(PageGenerator.instance().getPage("addUser.html", pageVariables));
@@ -25,8 +25,9 @@ public class AddNewUserServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response) throws IOException {
+        //request.setCharacterEncoding("UTF-8");
 
-        User user = ServiceForServlet.createUserFromRequest(request);
+        User user = ServletUtils.createUserFromRequest(request);
 
         userService.addUser(user);
 

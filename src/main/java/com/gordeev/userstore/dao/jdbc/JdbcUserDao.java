@@ -13,14 +13,13 @@ public class JdbcUserDao implements UserDao {
      * JDBC Driver and database url
      */
     private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String JDBC_DATABASE_URL = "jdbc:mysql://localhost/developer";
+    private static final String JDBC_DATABASE_URL = "jdbc:mysql://localhost/userstore?useUnicode=true&characterEncoding=UTF8";
     /**
      * User and Password
      */
     private static final String USER = "root";
     private static final String PASSWORD = "root";
 
-    private static final String GET_ALL_SQL = "SELECT * FROM users";
     private static final UserMapper USER_MAPPER = new UserMapper();
 
     private Connection connection;
@@ -33,17 +32,14 @@ public class JdbcUserDao implements UserDao {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-        //where we must do - connection.close(); ?
     }
 
 
     @Override
     public List<User> getAll() {
         List<User> result = new ArrayList<>();
-
         try (Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(GET_ALL_SQL)){
-
+             ResultSet resultSet = statement.executeQuery("SELECT * FROM users")){
             while (resultSet.next()) {
                 result.add(USER_MAPPER.mapRow(resultSet));
             }
@@ -56,18 +52,14 @@ public class JdbcUserDao implements UserDao {
 
     @Override
     public void addUser(User user)  {
-        try (Statement statement = connection.createStatement()){
-
+        String sql = "INSERT INTO users (firstName, lastName, salary, dateOfBirth) VALUES ( ?, ?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(sql)){
             Date date = Date.valueOf(user.getDateOfBirth());
-
-            String sql = "INSERT INTO users (firstName, lastName, salary, dateOfBirth)" +
-                    "VALUES ( '"+ user.getFirstName()
-                    + "', '" + user.getLastName()
-                    + "',"  + user.getSalary()
-                    + ", '"  + date + "')";
-
-            statement.executeUpdate(sql);
-
+            statement.setString(1, user.getFirstName());
+            statement.setString(2, user.getLastName());
+            statement.setDouble(3, user.getSalary());
+            statement.setDate(4, date);
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -76,14 +68,10 @@ public class JdbcUserDao implements UserDao {
 
     @Override
     public User getUserById(int id) {
-
         User user = new User();
-
-        String sql = "SELECT * FROM developer.users WHERE id = " + id;
-
+        String sql = "SELECT * FROM users WHERE id = " + id;
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)){
-
             if (resultSet.next()) {
                 user = USER_MAPPER.mapRow(resultSet);
             }
@@ -97,15 +85,14 @@ public class JdbcUserDao implements UserDao {
     @Override
     public void updateUser(User user) {
         Date date = Date.valueOf(user.getDateOfBirth());
-        try (Statement statement = connection.createStatement()){
-
-            String sql = "UPDATE users SET " +
-                    " firstName = '" + user.getFirstName() + "'," +
-                    " lastName = '" + user.getLastName() + "'," +
-                    " salary = " + user.getSalary() + "," +
-                    " dateOfBirth = '" + date + "' " +
-                    " WHERE id = " + user.getId();
-            statement.executeUpdate(sql);
+        String sql = "UPDATE users SET  firstName = ?, lastName = ?, salary = ?, dateOfBirth = ? WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setString(1, user.getFirstName());
+            statement.setString(2, user.getLastName());
+            statement.setDouble(3, user.getSalary());
+            statement.setDate(4, date);
+            statement.setInt(5, user.getId());
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
