@@ -53,7 +53,7 @@
         <th scope="row">${user.id}</th>
         <td><a href="update.html?id=${user.id}" data-id="${user.id}" id="${user.id}" name="${user.id}">${user.firstName} </a></td>
         <td>${user.lastName}</td>
-        <td>${user.salary}</td>
+        <td>${user.salary?string("##0")}</td>
     </tr>
 
     </#list>
