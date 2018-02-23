@@ -1,5 +1,6 @@
 package com.gordeev.userstore.servlet;
 
+import com.gordeev.userstore.servlet.utils.ServletUtils;
 import com.gordeev.userstore.templater.PageGenerator;
 
 import javax.servlet.http.HttpServlet;
@@ -13,9 +14,14 @@ public class LoginPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> pageVariables = ServletUtils.createPageVariablesMap(request);
-        response.setContentType("text/html;charset=utf-8");
-        response.setStatus(HttpServletResponse.SC_OK);
-        response.getWriter().println(PageGenerator.instance().getPage("index.html", pageVariables));
+        String requestURI = request.getRequestURI();
+        if (requestURI.equals("/css/styles.css")) {
+            response.getWriter().println(PageGenerator.instance().getPage("/css/styles.css", pageVariables));
+        } else {
+            response.setContentType("text/html;charset=utf-8");
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().println(PageGenerator.instance().getPage("index.html", pageVariables));
+        }
     }
 
     @Override
