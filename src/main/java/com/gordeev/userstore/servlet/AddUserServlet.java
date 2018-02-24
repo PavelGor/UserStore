@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class AddUserServlet extends HttpServlet {
 
-    private UserService userService = new UserService();
+    private UserService userService = UserService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -30,7 +30,7 @@ public class AddUserServlet extends HttpServlet {
 
         User user = ServletUtils.createUserFromRequest(request);
 
-        userService.addUser(user);
+        userService.add(user);
 
         response.sendRedirect("/users.html");
     }

@@ -5,7 +5,6 @@ import com.gordeev.userstore.service.UserService;
 import com.gordeev.userstore.servlet.utils.ServletUtils;
 import com.gordeev.userstore.templater.PageGenerator;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +14,7 @@ import java.util.Map;
 
 public class UsersServlet extends HttpServlet {
 
-    private UserService userService = new UserService();
+    private UserService userService = UserService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -37,7 +36,7 @@ public class UsersServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         doGet(req,resp);
     }
 }

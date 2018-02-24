@@ -51,7 +51,7 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public void addUser(User user)  {
+    public void add(User user)  {
         String sql = "INSERT INTO users (firstName, lastName, salary, dateOfBirth) VALUES ( ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)){
             Date date = Date.valueOf(user.getDateOfBirth());
@@ -67,7 +67,7 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getById(int id) {
         User user = new User();
         String sql = "SELECT * FROM users WHERE id = " + id;
         try (Statement statement = connection.createStatement();
@@ -83,7 +83,7 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public void updateUser(User user) {
+    public void update(User user) {
         Date date = Date.valueOf(user.getDateOfBirth());
         String sql = "UPDATE users SET  firstName = ?, lastName = ?, salary = ?, dateOfBirth = ? WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)){

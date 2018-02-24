@@ -13,14 +13,14 @@ import java.util.Map;
 
 public class UpdateUserServlet extends HttpServlet {
 
-    private UserService userService = new UserService();
+    private UserService userService = UserService.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, Object> pageVariables = ServletUtils.createPageVariablesMap(request);
 
         int id = Integer.parseInt(request.getParameter("id"));
-        User user = userService.getUserById(id);
+        User user = userService.getById(id);
 
         pageVariables.put("user", user);
         response.setContentType("text/html;charset=utf-8");
@@ -34,7 +34,7 @@ public class UpdateUserServlet extends HttpServlet {
 
         User user = ServletUtils.createUserFromRequest(request);
 
-        userService.updateUser(user);
+        userService.update(user);
 
         response.sendRedirect("/users.html");
     }

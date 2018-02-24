@@ -1,5 +1,7 @@
 package com.gordeev.userstore;
 
+import com.gordeev.userstore.dao.jdbc.JdbcUserDao;
+import com.gordeev.userstore.locator.ServiceLocator;
 import com.gordeev.userstore.servlet.AddUserServlet;
 import com.gordeev.userstore.servlet.LoginPageServlet;
 import com.gordeev.userstore.servlet.UpdateUserServlet;
@@ -10,6 +12,9 @@ import org.eclipse.jetty.servlet.ServletHolder;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        JdbcUserDao jdbcUserDao = new JdbcUserDao();
+        ServiceLocator.register("userDao", jdbcUserDao);
+
         UsersServlet usersServlet = new UsersServlet();
         LoginPageServlet loginPageServlet = new LoginPageServlet();
         AddUserServlet addUserServlet = new AddUserServlet();

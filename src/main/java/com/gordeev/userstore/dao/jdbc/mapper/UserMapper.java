@@ -5,7 +5,6 @@ import com.gordeev.userstore.entity.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.ZoneId;
 
 public class UserMapper {
 
