@@ -1,7 +1,6 @@
 package com.gordeev.userstore.service;
 
 import com.gordeev.userstore.dao.UserDao;
-import com.gordeev.userstore.dao.jdbc.JdbcUserDao;
 import com.gordeev.userstore.entity.User;
 import com.gordeev.userstore.locator.ServiceLocator;
 

@@ -19,9 +19,7 @@ public class UsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         List<User> usersList = userService.getAll();
-
         Map<String, Object> pageVariables = ServletUtils.createPageVariablesMap(request);
-
         response.setContentType("text/html;charset=utf-8");
 
         if (usersList == null || usersList.isEmpty()) {
@@ -29,10 +27,9 @@ public class UsersServlet extends HttpServlet {
         } else {
             response.setStatus(HttpServletResponse.SC_OK);
         }
+
         pageVariables.put("usersList", usersList == null ? "" : usersList);
-
         response.getWriter().println(PageGenerator.instance().getPage("users.html", pageVariables));
-
     }
 
     @Override

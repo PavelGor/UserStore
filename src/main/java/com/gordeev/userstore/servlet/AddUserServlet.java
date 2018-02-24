@@ -26,8 +26,6 @@ public class AddUserServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response) throws IOException {
-        //request.setCharacterEncoding("UTF-8");
-
         User user = ServletUtils.createUserFromRequest(request);
 
         userService.add(user);

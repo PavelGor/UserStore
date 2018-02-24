@@ -19,6 +19,5 @@ public class UserMapper {
         user.setDateOfBirth(localDate);
 
         return user;
-
     }
 }

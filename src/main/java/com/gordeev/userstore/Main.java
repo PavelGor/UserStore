@@ -21,7 +21,6 @@ public class Main {
         UpdateUserServlet updateUserServlet = new UpdateUserServlet();
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        //context.addServlet(new ServletHolder(loginPageServlet), "/index.html");
         context.addServlet(new ServletHolder(usersServlet), "/users.html");
         context.addServlet(new ServletHolder(addUserServlet), "/addUser.html");
         context.addServlet(new ServletHolder(updateUserServlet), "/update.html");
