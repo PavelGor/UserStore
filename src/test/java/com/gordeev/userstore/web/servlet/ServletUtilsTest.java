@@ -1,7 +1,7 @@
-package com.gordeev.userstore.servlet;
+package com.gordeev.userstore.web.servlet;
 
 import com.gordeev.userstore.entity.User;
-import com.gordeev.userstore.servlet.utils.ServletUtils;
+import com.gordeev.userstore.web.servlet.utils.ServletUtils;
 import org.junit.Before;
 import org.junit.Test;
 

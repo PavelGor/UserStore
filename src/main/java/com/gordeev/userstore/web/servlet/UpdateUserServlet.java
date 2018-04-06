@@ -1,14 +1,15 @@
-package com.gordeev.userstore.servlet;
+package com.gordeev.userstore.web.servlet;
 
 import com.gordeev.userstore.entity.User;
 import com.gordeev.userstore.service.UserService;
-import com.gordeev.userstore.servlet.utils.ServletUtils;
-import com.gordeev.userstore.templater.PageGenerator;
+import com.gordeev.userstore.web.servlet.utils.ServletUtils;
+import com.gordeev.userstore.web.templater.PageGenerator;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 public class UpdateUserServlet extends HttpServlet {
@@ -17,7 +18,7 @@ public class UpdateUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Map<String, Object> pageVariables = ServletUtils.createPageVariablesMap(request);
+        Map<String, Object> pageVariables = new HashMap<>();
 
         int id = Integer.parseInt(request.getParameter("id"));
         User user = userService.getById(id);
@@ -36,6 +37,6 @@ public class UpdateUserServlet extends HttpServlet {
 
         userService.update(user);
 
-        response.sendRedirect("/users.html");
+        response.sendRedirect("/users");
     }
 }

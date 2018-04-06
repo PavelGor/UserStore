@@ -1,14 +1,14 @@
-package com.gordeev.userstore.servlet;
+package com.gordeev.userstore.web.servlet;
 
 import com.gordeev.userstore.entity.User;
 import com.gordeev.userstore.service.UserService;
-import com.gordeev.userstore.servlet.utils.ServletUtils;
-import com.gordeev.userstore.templater.PageGenerator;
+import com.gordeev.userstore.web.templater.PageGenerator;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +19,7 @@ public class UsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         List<User> usersList = userService.getAll();
-        Map<String, Object> pageVariables = ServletUtils.createPageVariablesMap(request);
+        Map<String, Object> pageVariables = new HashMap<>();
         response.setContentType("text/html;charset=utf-8");
 
         if (usersList == null || usersList.isEmpty()) {

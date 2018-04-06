@@ -1,15 +1,14 @@
-package com.gordeev.userstore.servlet;
+package com.gordeev.userstore.web.servlet;
 
 import com.gordeev.userstore.entity.User;
 import com.gordeev.userstore.service.UserService;
-import com.gordeev.userstore.servlet.utils.ServletUtils;
-import com.gordeev.userstore.templater.PageGenerator;
+import com.gordeev.userstore.web.servlet.utils.ServletUtils;
+import com.gordeev.userstore.web.templater.PageGenerator;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
 
 public class AddUserServlet extends HttpServlet {
 
@@ -17,10 +16,9 @@ public class AddUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Map<String, Object> pageVariables = ServletUtils.createPageVariablesMap(request);
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
-        response.getWriter().println(PageGenerator.instance().getPage("addUser.html", pageVariables));
+        response.getWriter().println(PageGenerator.instance().getPage("addUser.html"));
     }
 
     @Override
@@ -30,6 +28,6 @@ public class AddUserServlet extends HttpServlet {
 
         userService.add(user);
 
-        response.sendRedirect("/users.html");
+        response.sendRedirect("/users");
     }
 }

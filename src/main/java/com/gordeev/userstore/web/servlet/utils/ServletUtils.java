@@ -1,11 +1,9 @@
-package com.gordeev.userstore.servlet.utils;
+package com.gordeev.userstore.web.servlet.utils;
 
 import com.gordeev.userstore.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ServletUtils {
 
@@ -40,15 +38,4 @@ public class ServletUtils {
         user.setDateOfBirth(dateOfBirth);
         return user;
     }
-
-    public static Map<String, Object> createPageVariablesMap(HttpServletRequest request) {
-        Map<String, Object> pageVariables = new HashMap<>();
-        pageVariables.put("method", request.getMethod());
-        pageVariables.put("URL", request.getRequestURL().toString());
-        pageVariables.put("pathInfo", request.getPathInfo());
-        pageVariables.put("sessionId", request.getSession().getId());
-        pageVariables.put("parameters", request.getParameterMap().toString());
-        return pageVariables;
-    }
-
 }

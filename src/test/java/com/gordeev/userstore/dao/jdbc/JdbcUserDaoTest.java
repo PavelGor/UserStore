@@ -31,7 +31,7 @@ public class JdbcUserDaoTest {
 
     @Test
     public void getUserById() {
-        User user = jdbcUserDao.getUserById(11);
+        User user = jdbcUserDao.getById(11);
         assertNotNull(user);
         assertNotEquals(0,user.getId());
     }
