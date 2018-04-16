@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class SecurityFilter implements Filter{
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig)  {
 
     }
 
@@ -28,12 +28,11 @@ public class SecurityFilter implements Filter{
             }
         }
 
-        if (isAuth){
+        if (isAuth || "/login".equals(((HttpServletRequest) request).getRequestURI())){
             chain.doFilter(request,response);
         } else {
             httpServletResponse.sendRedirect("/login");
         }
-
     }
 
     @Override

@@ -24,12 +24,7 @@ public class Main {
         context.addServlet(new ServletHolder(new AssetsServlet()), "/assets/*");
         context.addServlet(new ServletHolder(new LoginPageServlet()), "/login");
 
-
-        //maybe, there is a way of exception? all, without "/login"
-        context.addFilter(SecurityFilter.class, "/users", EnumSet.of(DispatcherType.REQUEST));
-        context.addFilter(SecurityFilter.class, "/user/add", EnumSet.of(DispatcherType.REQUEST));
-        context.addFilter(SecurityFilter.class, "/user/update", EnumSet.of(DispatcherType.REQUEST));
-        context.addFilter(SecurityFilter.class, "/assets/*", EnumSet.of(DispatcherType.REQUEST));
+        context.addFilter(SecurityFilter.class, "/*", EnumSet.of(DispatcherType.REQUEST));
 
         Server server = new Server(8080);
         server.setHandler(context);
